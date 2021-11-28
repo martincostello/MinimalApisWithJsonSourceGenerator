@@ -27,7 +27,22 @@ builder.Services.AddSingleton(services =>
 builder.Services.AddSingleton<JsonSerializerContext>(
     services => services.GetRequiredService<StellarJsonSerializerContext>());
 
+// Add OpenAPI documentation.
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("1.0", new() { Title = builder.Environment.ApplicationName, Version = "1.0" });
+});
+
 var app = builder.Build();
+
+// Add OpenAPI UI for calling the API
+app.UseSwagger();
+app.UseSwaggerUI(options =>
+{
+    options.RoutePrefix = "";
+    options.SwaggerEndpoint($"/swagger/1.0/swagger.json", $"{app.Environment.ApplicationName} v1");
+});
 
 // Create the stars and planets that can be queried from the HTTP API
 var oneMillionKm = 1_000_000;
