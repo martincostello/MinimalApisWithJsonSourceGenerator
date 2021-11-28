@@ -30,16 +30,19 @@ builder.Services.AddSingleton<JsonSerializerContext>(
 var app = builder.Build();
 
 // Create the stars and planets that can be queried from the HTTP API
+var oneMillionKm = 1_000_000;
+var oneBillionKm = oneMillionKm * 1_000;
+
 var planets = new[]
 {
-    new Planet("Mercury", 57.91 * 1_000_000),
-    new Planet("Venus", 108.2 * 1_000_000),
-    new Planet("Earth", 149.6 * 1_000_000),
-    new Planet("Mars", 227.9 * 1_000_000),
-    new Planet("Jupiter", 778.5 * 1_000_000),
-    new Planet("Saturn", 1.434 * 1_000_000_000),
-    new Planet("Uranus", 2.871 * 1_000_000_000),
-    new Planet("Neptune", 4.495 * 1_000_000_000)
+    new Planet("Mercury", 57.91 * oneMillionKm),
+    new Planet("Venus", 108.2 * oneMillionKm),
+    new Planet("Earth", 149.6 * oneMillionKm),
+    new Planet("Mars", 227.9 * oneMillionKm),
+    new Planet("Jupiter", 778.5 * oneMillionKm),
+    new Planet("Saturn", 1.434 * oneBillionKm),
+    new Planet("Uranus", 2.871 * oneBillionKm),
+    new Planet("Neptune", 4.495 * oneBillionKm)
 };
 
 var stars = new[]
